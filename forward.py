@@ -70,20 +70,20 @@ async def handler(event):
 
 
 
-
-
 def prefix(sender):
     prefix = ""
     try:
-        if sender.username is None:
-            prefix = "Channel " + sender.title
-        elif sender.first_name is not None:
+
+        if sender.first_name is not None:
             prefix = sender.first_name
-            if sender.last_name:
+            if sender.last_name is not None:
                 prefix = prefix + sender.last_name
+
+
     # Or else we only send Message
     except:
-        pass
+        if sender.username is None:
+            prefix = "Channel " + sender.title
 
     if prefix:
         return "`" + prefix + ":` "
